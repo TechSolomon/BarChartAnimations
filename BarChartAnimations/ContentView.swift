@@ -30,6 +30,7 @@ struct ContentView: View {
             
             VStack {
                 Text("Calorie Intake")
+                    .foregroundColor(Color("title"))
                     .font(.system(size: 34))
                     .fontWeight(.heavy)
                 
