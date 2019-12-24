@@ -10,8 +10,10 @@ import SwiftUI
 
 struct ContentView: View {
     
+    // DOCS: Time of Day Picker
     // A default pickerSelectedItem Value yields the following:
     // 0 = Weekday, 1 = Afternoon, and 2 = Evening.
+    
     @State var pickerSelectedItem = 0
     
     var body: some View {
@@ -31,19 +33,32 @@ struct ContentView: View {
                 }.pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal, 24)
                 
-                HStack {
-                    VStack {
-                        ZStack (alignment: .bottom) {
-                            Capsule().frame(width: 30, height: 200)
-                                .foregroundColor(Color(#colorLiteral(red: 0.2509803922, green: 0.8862745098, blue: 1, alpha: 1)))
-                            Capsule().frame(width: 30, height: 100)
-                                .foregroundColor(.white)
-                        }
-                        Text("D").padding(.top, 8)
-                    }
+                HStack (spacing: 16) {
+                    BarView(value: 50)
+                    BarView(value: 100)
+                    BarView(value: 150)
+                    
                 }.padding(.top, 24)
             }
             
         }
     }
+}
+
+struct BarView: View {
+    
+    var value: CGFloat
+    
+    var body: some View {
+        VStack {
+            ZStack (alignment: .bottom) {
+                Capsule().frame(width: 30, height: 200)
+                    .foregroundColor(Color(#colorLiteral(red: 0.2509803922, green: 0.8862745098, blue: 1, alpha: 1)))
+                Capsule().frame(width: 30, height: value)
+                    .foregroundColor(.white)
+            }
+            Text("D").padding(.top, 8)
+        }
+    }
+    
 }
