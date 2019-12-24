@@ -17,17 +17,16 @@ struct ContentView: View {
     @State var pickerSelectedItem = 0
     
     @State var dataPoints: [[CGFloat]] = [
-        
-        [50, 100, 150],
-        [150, 100, 50],
-        [10, 20, 30]
-        
+        [50, 100, 150, 30, 40],
+        [150, 100, 50, 200, 10],
+        [10, 20, 30, 50, 100]
     ]
     
     var body: some View {
         ZStack {
             
-            Color(#colorLiteral(red: 0.3333333333, green: 0.9490196078, blue: 0.7529411765, alpha: 1)).edgesIgnoringSafeArea(.all)
+            // Any, Light, & Dark Appearances derive from the Assets.xcassets class.
+            Color("appBackground").edgesIgnoringSafeArea(.all)
             
             VStack {
                 Text("Calorie Intake")
@@ -41,10 +40,13 @@ struct ContentView: View {
                 }.pickerStyle(SegmentedPickerStyle())
                     .padding(.horizontal, 24)
                 
+                // NOTE: Animations do not work when using a for each loop.
                 HStack (spacing: 16) {
                     BarView(value: dataPoints[pickerSelectedItem][0])
                     BarView(value: dataPoints[pickerSelectedItem][1])
                     BarView(value: dataPoints[pickerSelectedItem][2])
+                    BarView(value: dataPoints[pickerSelectedItem][3])
+                    BarView(value: dataPoints[pickerSelectedItem][4])
                     
                 }.padding(.top, 24)
                     .animation(.default)
